@@ -1,0 +1,26 @@
+name: Invoke Lambda to Start EC2 OIDC
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  invoke-lambda:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Invoke Lambda function
+        run: |
+          aws lambda invoke \
+            --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
+            --invocation-type Event \
+            response.json
