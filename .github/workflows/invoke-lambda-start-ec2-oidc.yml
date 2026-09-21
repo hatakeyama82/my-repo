@@ -11,8 +11,6 @@ jobs:
   invoke-lambda:
     runs-on: ubuntu-latest
     steps:
-      - name: OIDC Debug
-        uses: github/actions-oidc-debugger@main
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
