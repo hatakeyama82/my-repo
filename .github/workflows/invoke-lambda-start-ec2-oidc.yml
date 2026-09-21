@@ -10,7 +10,6 @@ permissions:
 jobs:
   invoke-lambda:
     runs-on: ubuntu-latest
-　
     steps:
       - name: OIDC Debug
         uses: github/actions-oidc-debugger@main
