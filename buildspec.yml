@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "..."
+  pre_build:
+    commands:
+      - echo "..."
+  build:
+    commands:
+      - echo "..."
+  post_build:
+    commands:
+      - echo "..."
+
+artifacts:
+  files:
+    - index.html
+    - appspec.yml
+    - scripts/**/*
+  discard-paths: no
