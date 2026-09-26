@@ -14,7 +14,7 @@ phases:
       - echo "Running validate-template..."
       - aws cloudformation validate-template --template-body file://pipe_config/template.yaml
 
-  artifacts:
-    files:
-      - pipe_config/template.yaml
-    discard-paths: no
+artifacts:
+  files:
+    - pipe_config/template.yaml
+  discard-paths: no
