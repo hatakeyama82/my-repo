@@ -19,7 +19,7 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.1.0/24
-      AvailabilityZone: ap-northeast-1a
+      AvailabilityZone: !Select [0, !GetAZs '']
 
   RouteTable1:
     Type: AWS::EC2::RouteTable
