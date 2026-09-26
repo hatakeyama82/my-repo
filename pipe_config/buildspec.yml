@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - pip install cfn-lint
+
+  build:
+    commands:
+      - echo "Runnning cfn-lint..."
+      - cfn-lint pipe_config/template.yaml
+      - echo "Running validate-template..."
+      - aws cloudformation validate-template --template-body file://pipe_config/template.yaml
+
+  artifacts:
+    files:
+      - pipe_config/template.yaml
+    discard-paths: no
