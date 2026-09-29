@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo "Deploy commit $CODEBUILD_RESOLVED_SOURCE_VERSION"
+      - |
+        DEPLOYMENT_ID=$(aws deploy create-deployment \
+          --aplication-name my-app \
+          --deployment-group-name my-app-dg \
+          --github-location repository=$GITHUB_REPO,commitId=$CODEBUILD_RESOLVED_SOURCE_VERSION \
+          --description "CodeBuild $CODEBUILD_BUILD_NUMBER" \
+          --query deploymentId --output text)
+
+      - echo "DeploymentID=$DEPLOYMENT_ID"
+      - aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID
