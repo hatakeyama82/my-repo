@@ -6,7 +6,7 @@ phases:
       - echo "Deploy commit $CODEBUILD_RESOLVED_SOURCE_VERSION"
       - |
         DEPLOYMENT_ID=$(aws deploy create-deployment \
-          --aplication-name my-app \
+          --application-name my-app \
           --deployment-group-name my-app-dg \
           --github-location repository=$GITHUB_REPO,commitId=$CODEBUILD_RESOLVED_SOURCE_VERSION \
           --description "CodeBuild $CODEBUILD_BUILD_NUMBER" \
